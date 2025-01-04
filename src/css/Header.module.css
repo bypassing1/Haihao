@@ -1,0 +1,34 @@
+.header {
+    height: 56px;
+    background-color: rgb(255, 249, 235);
+}
+
+.inner {
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link {
+    display: block;
+    line-height: 1;
+    padding: 8px 12px;
+    border-radius: var(--mantine-radius-sm);
+    text-decoration: none;
+    color: black;
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 500;
+
+    @mixin hover {
+        background-color: rgb(255, 249, 235);
+    }
+}
+
+.logo {
+    width: 100px;
+}
+
+.linkLabel {
+    margin-right: 5px;
+}
