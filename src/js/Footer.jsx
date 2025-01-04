@@ -7,7 +7,7 @@ export function FooterSocial() {
         <div className={classes.footer}>
             <Container className={classes.inner}>
                 {/* <MantineLogo size={28} /> */}
-                <img className={classes.logo} src="../../public/logo.png" alt="" />
+                <img className={classes.logo} src="assets/logo.png" alt="" />
                 <Group gap={10} className={classes.links} justify="flex-end" wrap="nowrap">
                     <ActionIcon size="lg" color="light" variant="subtle">
                         <IconBrandTwitter size={50} stroke={1.5} />

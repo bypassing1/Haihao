@@ -78,7 +78,7 @@ export function HeaderMenu() {
         <header className={classes.header}>
             <Container size="md">
                 <div className={classes.inner}>
-                    <img className={classes.logo} src="../../public/logo.png" alt="" />
+                    <img className={classes.logo} src="assets/logo.png" alt="" />
                     {/* <MantineLogo size={28} /> */}
                     <Group gap={5} visibleFrom="sm">
                         {items}
