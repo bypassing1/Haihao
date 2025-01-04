@@ -3,6 +3,7 @@ import { HeroImageRight } from "./HeroImageRight";
 import { FooterSocial } from "./Footer";
 import { FeaturesAsymmetrical } from "./FeatureAsymmetrical";
 import { MantineProvider } from "@mantine/core";
+import { ProductCard } from "./ProductCard";
 import '@mantine/core/styles.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <HeaderMenu />
       <HeroImageRight />
       <FeaturesAsymmetrical/>
+      {/* <ProductCard/> */}
       <FooterSocial/>
     </MantineProvider>
   );

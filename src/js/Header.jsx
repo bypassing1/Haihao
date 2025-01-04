@@ -1,65 +1,68 @@
 import { IconChevronDown } from "@tabler/icons-react";
-import { Burger, Center, Container, Group, Menu } from "@mantine/core";
+import { Burger, Center, Container, Drawer, Group, Menu, ScrollArea, UnstyledButton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-// import { MantineLogo } from "@mantinex/mantine-logo";
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.png'
 import classes from "../css/Header.module.css";
 
 const links = [
     { link: "/about", label: "Features" },
-    {
-        link: "#1",
-        label: "Learn",
-        links: [
-            { link: "/docs", label: "Documentation" },
-            { link: "/resources", label: "Resources" },
-            { link: "/community", label: "Community" },
-            { link: "/blog", label: "Blog" },
-        ],
-    },
     { link: "/about", label: "About" },
     { link: "/pricing", label: "Pricing" },
-    {
-        link: "#2",
-        label: "Support",
-        links: [
-            { link: "/faq", label: "FAQ" },
-            { link: "/demo", label: "Book a demo" },
-            { link: "/forums", label: "Forums" },
-        ],
-    },
 ];
 
 export function HeaderMenu() {
-    const [opened, { toggle }] = useDisclosure(false);
+    const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
 
-    const items = links.map((link) => {
-        const menuItems = link.links?.map((item) => (
-            <Menu.Item key={item.link}>{item.label}</Menu.Item>
-        ));
-
-        if (menuItems) {
+    const menuItems = links.map((link) => {
+        if (link.links) {
             return (
-                <Menu
-                    key={link.label}
-                    trigger="hover"
-                    transitionProps={{ exitDuration: 0 }}
-                    withinPortal
-                >
+                <Menu key={link.label} trigger="hover" position="bottom-start" withinPortal>
                     <Menu.Target>
-                        <a
-                            href={link.link}
-                            className={classes.link}
-                            onClick={(event) => event.preventDefault()}
-                        >
-                            <Center>
-                                <span className={classes.linkLabel}>{link.label}</span>
-                                <IconChevronDown size={14} stroke={1.5} />
+                        <UnstyledButton className={classes.link}>
+                            <Center inline>
+                                <span>{link.label}</span>
+                                <IconChevronDown size={16} style={{ marginLeft: 4 }} />
                             </Center>
-                        </a>
+                        </UnstyledButton>
                     </Menu.Target>
-                    <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+                    <Menu.Dropdown>
+                        {link.links.map((subLink) => (
+                            <Menu.Item key={subLink.link} component="a" href={subLink.link}>
+                                {subLink.label}
+                            </Menu.Item>
+                        ))}
+                    </Menu.Dropdown>
                 </Menu>
+            );
+        }
+
+        return (
+            <a key={link.label} href={link.link} className={classes.link}>
+                {link.label}
+            </a>
+        );
+    });
+
+    const mobileMenuItems = links.map((link) => {
+        if (link.links) {
+            return (
+                <div key={link.label} className={classes.mobileSubMenu}>
+                    <UnstyledButton className={classes.link}>
+                        {link.label}
+                    </UnstyledButton>
+                    <div className={classes.mobileSubmenuItems}>
+                        {link.links.map((subLink) => (
+                            <a
+                                key={subLink.link}
+                                href={subLink.link}
+                                className={classes.subLink}
+                                onClick={closeDrawer}
+                            >
+                                {subLink.label}
+                            </a>
+                        ))}
+                    </div>
+                </div>
             );
         }
 
@@ -68,7 +71,7 @@ export function HeaderMenu() {
                 key={link.label}
                 href={link.link}
                 className={classes.link}
-                onClick={(event) => event.preventDefault()}
+                onClick={closeDrawer}
             >
                 {link.label}
             </a>
@@ -77,16 +80,40 @@ export function HeaderMenu() {
 
     return (
         <header className={classes.header}>
-            <Container size="md">
+            <Container size="md" h="100%">
                 <div className={classes.inner}>
-                    <img className={classes.logo} src={logo} alt="Logo" />
-                    {/* <MantineLogo size={28} /> */}
+                    <img src={logo} alt="Logo" className={classes.logo} />
+
                     <Group gap={5} visibleFrom="sm">
-                        {items}
+                        {menuItems}
                     </Group>
-                    <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+
+                    <Burger
+                        opened={drawerOpened}
+                        onClick={toggleDrawer}
+                        size="sm"
+                        hiddenFrom="sm"
+                    />
                 </div>
             </Container>
+
+            <Drawer
+                opened={drawerOpened}
+                onClose={closeDrawer}
+                size="100%"
+                padding="md"
+                title="Navigation"
+                hiddenFrom="sm"
+                zIndex={1000000}
+            >
+                <ScrollArea h="calc(100vh - 80px)" mx="-md">
+                    <div className={classes.mobileMenu}>
+                        {mobileMenuItems}
+                    </div>
+                </ScrollArea>
+            </Drawer>
         </header>
     );
 }
+
+export default HeaderMenu;

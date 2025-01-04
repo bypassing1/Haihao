@@ -39,7 +39,7 @@ export function HeroImageRight() {
                             className={classes.control}
                             mt={40}
                         >
-                            Get started
+                            Buy Now
                         </Button>
                     </div>
                 </div>
