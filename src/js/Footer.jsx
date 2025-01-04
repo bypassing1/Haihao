@@ -11,7 +11,7 @@ export function FooterSocial() {
                 <img className={classes.logo} src={logo} alt="Logo" />
                 <Group gap={10} className={classes.links} justify="flex-end" wrap="nowrap">
                     <ActionIcon size="lg" color="light" variant="subtle">
-                        <IconBrandTwitter size={50} stroke={1.5} />SS
+                        <IconBrandTwitter size={50} stroke={1.5} />
                     </ActionIcon>
                     <ActionIcon size="lg" color="light" variant="subtle">
                         <IconBrandYoutube size={50} stroke={1.5} />
