@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     background-image: linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #fff9eb 70%),
-        url(assets/GZr7NWHaAAQT8Vf.jfif);
+        url(../assets/GZr7NWHaAAQT8Vf.jfif);
         object-fit: fill;
     padding-top: calc(var(--mantine-spacing-xl) * 3);
     padding-bottom: calc(var(--mantine-spacing-xl) * 3);
