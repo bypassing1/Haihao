@@ -1,5 +1,13 @@
+.root {
+  background-color: rgb(255, 252, 241);
+  padding: var(--mantine-spacing-xl);
+}
+
 .card {
   background-color: var(--mantine-color-body);
+  width: 400px;
+  margin: 40px;
+  filter: drop-shadow(4px 4px );
 }
 
 .imageSection {
@@ -22,11 +30,54 @@
 
 .section {
   padding: var(--mantine-spacing-md);
-  border-top: 1px solid
-    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
 .icon {
   margin-right: 5px;
   color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-2));
 }
+
+.button {
+  background-color: rgb(255, 246, 205) !important;
+  color: black !important;
+}
+
+.featuretitle {
+  font-weight: 900;
+margin-bottom: var(--mantine-spacing-xl) !important;
+text-align: center;
+
+@media (max-width: $mantine-breakpoint-sm) {
+  font-size: 28px;
+  text-align: left;
+}
+}
+
+.description {
+  text-align: center;
+  margin-bottom: var(--mantine-spacing-xl) !important;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    text-align: left;
+  }
+}
+
+.featuretitle {
+    font-weight: 900;
+  margin-bottom: var(--mantine-spacing-xl) !important;
+  text-align: center;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 28px;
+    text-align: left;
+  }
+}
+
+.description {
+    text-align: center;
+    margin-bottom: var(--mantine-spacing-xl) !important;
+  
+    @media (max-width: $mantine-breakpoint-sm) {
+      text-align: left;
+    }
+  }

@@ -16,7 +16,7 @@ function App() {
       <HeaderMenu />
       <HeroImageRight />
       <FeaturesAsymmetrical/>
-      {/* <ProductCard/> */}
+      <ProductCard/>
       <FooterSocial/>
     </MantineProvider>
   );

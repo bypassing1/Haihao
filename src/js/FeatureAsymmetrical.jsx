@@ -1,5 +1,5 @@
 import { IconCertificate, IconCoin, IconTruck } from '@tabler/icons-react';
-import { Container, SimpleGrid, Text, Flex } from '@mantine/core';
+import { Container, SimpleGrid, Text, Flex, Title } from '@mantine/core';
 import classes from '../css/FeatureAsymmetrical.module.css';
 
 // Feature component
@@ -21,7 +21,7 @@ function Feature({ icon: Icon, title, description, className, ...others }) {
     );
 }
 
-const mockdata = [
+const featuredata = [
     {
         icon: IconTruck,
         title: 'Babelan Shipping',
@@ -45,11 +45,17 @@ const mockdata = [
 
 // FeaturesAsymmetrical component
 export function FeaturesAsymmetrical() {
-    const items = mockdata.map((item) => <Feature {...item} key={item.title} />);
+    const items = featuredata.map((item) => <Feature {...item} key={item.title} />);
 
     return (
         <Container mt={30} mb={30} size="lg">
-            <Flex wrap="wrap" justify={'center'} cols={3} spacing={50}>
+            <Title className={classes.featuretitle}>Effortlessly Satisfy Any Craving</Title>
+            <Container size={560} p={0}>
+                <Text size="sm" className={classes.description}>
+                Every now and then, you'll find a dumpling missing from the steamer. This happens when hunger drives someone to steal an extra bite of our irresistible dim sum.
+                </Text>
+            </Container>
+            <Flex wrap="wrap" justify={'center'}>
                 {items}
             </Flex>
         </Container>

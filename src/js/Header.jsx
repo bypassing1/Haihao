@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { Burger, Center, Container, Drawer, Group, Menu, ScrollArea, UnstyledButton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
 import classes from "../css/Header.module.css";
 
 const links = [
@@ -12,6 +13,21 @@ const links = [
 
 export function HeaderMenu() {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const menuItems = links.map((link) => {
         if (link.links) {
@@ -47,9 +63,7 @@ export function HeaderMenu() {
         if (link.links) {
             return (
                 <div key={link.label} className={classes.mobileSubMenu}>
-                    <UnstyledButton className={classes.link}>
-                        {link.label}
-                    </UnstyledButton>
+                    <UnstyledButton className={classes.link}>{link.label}</UnstyledButton>
                     <div className={classes.mobileSubmenuItems}>
                         {link.links.map((subLink) => (
                             <a
@@ -67,19 +81,20 @@ export function HeaderMenu() {
         }
 
         return (
-            <a
-                key={link.label}
-                href={link.link}
-                className={classes.link}
-                onClick={closeDrawer}
-            >
+            <a key={link.label} href={link.link} className={classes.link} onClick={closeDrawer}>
                 {link.label}
             </a>
         );
     });
 
     return (
-        <header className={classes.header}>
+        <header
+            className={classes.header}
+            style={{
+                backgroundColor: isScrolled ? 'white' : '',
+                transition: "0.3s ease-in-out",
+            }}
+        >
             <Container size="md" h="100%">
                 <div className={classes.inner}>
                     <img src={logo} alt="Logo" className={classes.logo} />
@@ -107,9 +122,7 @@ export function HeaderMenu() {
                 zIndex={1000000}
             >
                 <ScrollArea h="calc(100vh - 80px)" mx="-md">
-                    <div className={classes.mobileMenu}>
-                        {mobileMenuItems}
-                    </div>
+                    <div className={classes.mobileMenu}>{mobileMenuItems}</div>
                 </ScrollArea>
             </Drawer>
         </header>
