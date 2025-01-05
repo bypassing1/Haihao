@@ -1,9 +1,31 @@
 import { IconCertificate, IconCoin, IconTruck } from '@tabler/icons-react';
-import { Container, SimpleGrid, Text, Flex, Title } from '@mantine/core';
+import { useEffect } from 'react';
+import { Container, Text, Flex, Title } from '@mantine/core';
 import classes from '../css/FeatureAsymmetrical.module.css';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Feature component
 function Feature({ icon: Icon, title, description, className, ...others }) {
+    useEffect(() => {
+            gsap.fromTo(
+                `.${classes.feature}`,
+                { opacity: "0",
+                transform: 'translateY(50px)'},
+                {
+                    opacity: "1",
+                    transform: 'translateY(0)',
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: `.${classes.feature}`,
+                        toggleActions: 'restart none restart none',
+                    },
+                }
+            );
+        }, []);
+
     return (
         <div className={classes.feature} {...others}>
             <div className={classes.overlay} />
